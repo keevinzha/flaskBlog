@@ -25,4 +25,15 @@ def inference(input_tensor, train, regularizer):
         conv1 = tf.nn.conv2d(
             input_tensor, conv1_weights, strides=[1, 1, 1, 1], padding='SAME'
         )
-        relu1 = tf.nn.relu(tf.nn.bias_add(conv1_biases))
+        relu1 = tf.nn.relu(tf.nn.bias_add(conv1_biases))#bias_add手动传播
+
+    with tf.variable_scope('layer-pool1'):
+        pool1 = tf.nn.max_pool(
+            relu1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME'
+        )
+
+    with tf.variable_scope('layer-conv2'):
+        conv2_weights = tf.get_variables(
+            'weight',
+
+        )
